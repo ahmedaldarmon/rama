@@ -1,0 +1,56 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصفحة الرئيسية</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #E5D3B3;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            text-align: center;
+        }
+        
+        .container img {
+            width: 50%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .buttons {
+            margin-top: 20px;
+        }
+        
+        .buttons button {
+            background-color: #fff;
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="1.jpg" alt="صورة">
+        <div class="buttons">
+            <button onclick="window.location.href='page1.html'" style="background-color:#ff9900; color:#333" > English Books</button>
+            <button onclick="window.location.href='page2.html'"> كتب اسلامية </button>
+            <button onclick="window.location.href='page3.html'"> كتب تطوير الذات </button>
+        </div>
+    </div>
+</body>
+</html>
