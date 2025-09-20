@@ -1,3 +1,4 @@
+
 <!-- index.html -->
 
 <!DOCTYPE html>
@@ -9,7 +10,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #FAF3DD;
+            background-color: ##FFFFFF;
             height: 100vh;
             margin: 0;
         }
@@ -60,6 +61,48 @@
             bottom: 0;
         }
 
+        /* نمط الصورة وتفاعلها */
+  img {
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.3s ease; /* تأثير سلس عند التكبير */
+    cursor: pointer; /* تغيير مؤشر الفأرة ليعبر عن أنه قابل للنقر / التفاعل */
+  }
+
+  /* تأثير التكبير عند تمرير المؤشر على الصورة */
+  img:hover {
+    transform: scale(1.2);
+  }
+
+  /* تأثير الضغط على الصورة */
+  img:active {
+    transform: scale(1.3);
+  }
+
+
+  /* إعدادات الحاوية */
+#butterflies-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* لكي لا تتوقف التفاعلات */
+  overflow: hidden;
+  z-index: 9999;
+}
+
+/* تصميم الفراشة */
+.butterfly {
+     position: absolute;
+    width: 50px;
+    height: 50px;
+    background-image: url(55.WEBP);
+    background-size: cover;
+    background-color: transparent; /* إضفاء خلفية شفافة */
+    pointer-events: none;
+}
+
 
     </style>
 </head>
@@ -70,11 +113,16 @@
             <button onclick="window.location.href='page1.html'"> English Books</button>
             <button onclick="window.location.href='page2.html'"> كتب اسلامية </button>
             <button onclick="window.location.href='page3.html'"> كتب تطوير الذات </button>
+             <div id="butterflies-container"></div>
              <nav>
             <button id="donateButton">قسم التبرعات</button>
             </nav>
         </div>
     </div>
+
+  
+
+ 
 
 
    
@@ -84,11 +132,63 @@
     document.getElementById('donateButton').addEventListener('click', function() {
         window.location.href = 'page4.html';
     });
+
+
+
+
+  const butterflyCount = 10;
+
+  // دالة لإنشاء وتكاثر الفراشات
+  for (let i = 0; i < butterflyCount; i++) {
+    const butterfly = document.createElement('div');
+    butterfly.className = 'butterfly';
+    // تحديد مكان أولي عشوائي
+    butterfly.style.top = Math.random() * window.innerHeight + 'px';
+    butterfly.style.left = Math.random() * window.innerWidth + 'px';
+
+    document.body.appendChild(butterfly);
+
+    moveButterfly(butterfly);
+  }
+
+  function moveButterfly(butterfly) {
+    // تحديد هدف عشوائي جديد
+    let targetX = Math.random() * window.innerWidth;
+    let targetY = Math.random() * window.innerHeight;
+    let currentX = parseFloat(butterfly.style.left);
+    let currentY = parseFloat(butterfly.style.top);
+
+    const duration = 3000 + Math.random() * 3000; // مدة الحركة
+    const startTime = performance.now();
+
+    function animate() {
+      const elapsed = performance.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // حساب المواقع الجديدة
+      const newX = currentX + (targetX - currentX) * progress;
+      const newY = currentY + (targetY - currentY) * progress;
+
+      butterfly.style.left = newX + 'px';
+      butterfly.style.top = newY + 'px';
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        // بعد الوصول للهدف، اختر هدف عشوائي جديد
+        moveButterfly(butterfly);
+      }
+    }
+
+    animate();
+  }
+
 </script>
   
 <footer>
-    &copy; 2025 مكتبتنا الألكترونيه ( راما , حورية , سيدرا , فرح ) . جميع الحقوق محفوظة
+    &copy; 2025 مكتبتنا الألكترونيه ( راما , حورية , سيدرا , فرح , جود , أمل ) . جميع الحقوق محفوظة
 </footer>
+
 
 </body>
 </html>
